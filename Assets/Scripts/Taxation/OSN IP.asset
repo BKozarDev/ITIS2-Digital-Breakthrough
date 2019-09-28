@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dbfbb2026743d144af7aa02e726b1dd, type: 3}
-  m_Name: Individual
+  m_Script: {fileID: 11500000, guid: a5f41d7a5ad6a6048ab38cbb2d1261ef, type: 3}
+  m_Name: OSN IP
   m_EditorClassIdentifier: 
-  characterType: 0
-  taxations:
-  - taxationName: 0
-    nalogs: 0000000000000000
+  taxationName: 0
+  nalogs: 0000000003000000020000000100000004000000050000000600000008000000

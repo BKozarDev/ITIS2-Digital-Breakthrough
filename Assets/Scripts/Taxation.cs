@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Taxation
+[CreateAssetMenu(fileName = "New Taxation", menuName = "Taxation", order = 52)]
+public class Taxation : ScriptableObject
 {
     public TaxationType taxationName;
     public List<NalogType> nalogs;

@@ -5,5 +5,19 @@ using UnityEngine;
 public enum NalogType
 {
     NDFL,
-    NDS
+    NDFLForEmployees,
+    NDS,
+    MedicalAndPensionInsurance,
+    InsuranceForEmplyees,
+    TransportTax,
+    PropertyTax,
+    ProperyTaxCadastral,
+    LandTax,
+    OrganizationProfitTax,
+    PSN,
+    ESHN,
+    SimplifiedSystemTax,
+    ENVD
+
+
 }

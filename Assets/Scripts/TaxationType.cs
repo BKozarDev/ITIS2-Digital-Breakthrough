@@ -4,10 +4,12 @@ using UnityEngine;
 
 public enum TaxationType
 {
+    OSN,
     USN,
     ENVD,
     PSN,
-    ESHN
+    ESHN,
+    NPD
 }
 
 

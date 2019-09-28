@@ -9,6 +9,6 @@ public class Nalog : MonoBehaviour
 
     private void OnMouseDown()
     {
-        
+        controller.TapOnNalog(this);
     }
 }
