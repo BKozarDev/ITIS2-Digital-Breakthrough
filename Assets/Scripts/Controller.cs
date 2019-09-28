@@ -10,13 +10,21 @@ public class Controller : MonoBehaviour
     private Character curCharacter;
     [SerializeField]
     private Taxation curTaxation;
-    private int score = 0;
+    private int points;
     [SerializeField]
     private TextMeshProUGUI pointsText;
 
-    void Start()
+    private Dictionary<FieldOfActivityType, int> upgrades = new Dictionary<FieldOfActivityType, int>();
+
+    void Awake()
     {
-        if (InfoTransfer.Character != null && InfoTransfer.Taxation!=null)
+        points = PlayerPrefs.GetInt("Points", 0);
+        foreach (FieldOfActivityType field in System.Enum.GetValues(typeof(FieldOfActivityType)))
+        {
+            upgrades.Add(field, PlayerPrefs.GetInt(System.Enum.GetName(typeof(FieldOfActivityType), field), 0));
+        }
+
+        if (InfoTransfer.Character != null && InfoTransfer.Taxation != null)
         {
             curCharacter = InfoTransfer.Character;
             Debug.Log(curCharacter);
@@ -24,7 +32,7 @@ public class Controller : MonoBehaviour
             Debug.Log(curTaxation);
         }
 
-        pointsText.SetText("0"); // Нужно сделать считывание с сохранения
+        pointsText.SetText(points.ToString());
     }
 
     public void TapOnNalog(Nalog nalog)
@@ -45,7 +53,44 @@ public class Controller : MonoBehaviour
 
     private void PointsAdd(int points)
     {
-        score += points;
-        pointsText.SetText(score.ToString());
+        this.points += points;
+        UpdateText();
+    }
+
+    public void UpgradeField(FieldOfActivityType field, int price)
+    {
+        upgrades[field]++;
+        points -= price;
+        pointsText.SetText(points.ToString());
+    }
+
+    public int GetField(FieldOfActivityType field)
+    {
+        return upgrades[field];
+    }
+
+    public int Points
+    {
+        get { return points; }
+    }
+
+    public int GetPriceForNextLvl(FieldOfActivityType field)
+    {
+        int curLvl = GetField(field);
+        return (curLvl + 1) * 100;
+    }
+
+    public void UpdateText()
+    {
+        pointsText.SetText(points.ToString());
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetInt("Points", points);
+        foreach (FieldOfActivityType field in System.Enum.GetValues(typeof(FieldOfActivityType)))
+        {
+            PlayerPrefs.SetInt(System.Enum.GetName(typeof(FieldOfActivityType), field), upgrades[field]);
+        }
     }
 }
