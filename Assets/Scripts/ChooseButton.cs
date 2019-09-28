@@ -7,8 +7,9 @@ public class ChooseButton : MonoBehaviour
 {
     public GameObject slider;
 
-    public List<GameObject> leftChar;
-    public List<GameObject> rightChar;
+    public GameObject leftChar;
+    public GameObject rightChar;
+    public GameObject upChar;
 
     public int speed = 250;
 
@@ -18,8 +19,12 @@ public class ChooseButton : MonoBehaviour
     public float rightCharOut = 300f;
     public float rightCharIn = -300f;
 
-    private List<RectTransform> left = new List<RectTransform>();
-    private List<RectTransform> right = new List<RectTransform>();
+    public float upCharOut = 300f;
+    public float upCharIn = -300f;
+
+    private RectTransform left;
+    private RectTransform right;
+    private RectTransform up;
 
     private float timer = 0f;
     private bool anim = false;
@@ -30,10 +35,9 @@ public class ChooseButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (GameObject temp in leftChar)
-            left.Add(temp.GetComponent<RectTransform>());
-        foreach (GameObject temp in rightChar)
-            right.Add(temp.GetComponent<RectTransform>());
+        left = leftChar.GetComponent<RectTransform>();
+        right = rightChar.GetComponent<RectTransform>();
+        up = upChar.GetComponent<RectTransform>();
 
         sliderContainer = slider.transform.GetChild(0).gameObject;
     }
@@ -46,22 +50,22 @@ public class ChooseButton : MonoBehaviour
             // Debug.Log(timer);
             if (animIn)
             {
-                foreach (var temp in left)
-                    temp.anchoredPosition = new Vector2(Mathf.Lerp(leftCharOut, leftCharIn, timer), temp.anchoredPosition.y);
-                foreach (var temp in right)
-                    temp.anchoredPosition = new Vector2(Mathf.Lerp(rightCharOut, rightCharIn, timer), temp.anchoredPosition.y);
+                left.anchoredPosition = new Vector2(Mathf.Lerp(leftCharOut, leftCharIn, timer), left.anchoredPosition.y);
+                right.anchoredPosition = new Vector2(Mathf.Lerp(rightCharOut, rightCharIn, timer), right.anchoredPosition.y);
+                up.anchoredPosition = new Vector2(up.anchoredPosition.x, Mathf.Lerp(upCharOut, upCharIn, timer));
             }
             else
             {
-                foreach (var temp in left)
-                    temp.anchoredPosition = new Vector2(Mathf.Lerp(leftCharIn, leftCharOut, timer), temp.anchoredPosition.y);
-                foreach (var temp in right)
-                    temp.anchoredPosition = new Vector2(Mathf.Lerp(rightCharIn, rightCharOut, timer), temp.anchoredPosition.y);
+                left.anchoredPosition = new Vector2(Mathf.Lerp(leftCharIn, leftCharOut, timer), left.anchoredPosition.y);
+                right.anchoredPosition = new Vector2(Mathf.Lerp(rightCharIn, rightCharOut, timer), right.anchoredPosition.y);
+                up.anchoredPosition = new Vector2(up.anchoredPosition.x, Mathf.Lerp(upCharIn, upCharOut, timer));
             }
             if (timer > 1)
             {
                 anim = false;
                 timer = 0;
+                if (!animIn)
+                    slider.SetActive(true);
             }
         }
     }
@@ -81,7 +85,6 @@ public class ChooseButton : MonoBehaviour
     public void ChooseChar(Character character)
     {
         InfoTransfer.Character = character;
-        sliderContainer.GetComponent<FillSlider>().FillButtons(character.taxations);
-        slider.SetActive(true);
+        sliderContainer.GetComponent<TaxationSliderFill>().FillButtons(character.taxations);
     }
 }

@@ -23,6 +23,8 @@ public class Controller : MonoBehaviour
             curTaxation = InfoTransfer.Taxation;
             Debug.Log(curTaxation);
         }
+
+        pointsText.SetText("0"); // Нужно сделать считывание с сохранения
     }
 
     public void TapOnNalog(Nalog nalog)
