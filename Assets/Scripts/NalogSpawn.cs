@@ -47,7 +47,7 @@ public class NalogSpawn : MonoBehaviour
         GameObject newNalog = Instantiate(nalog, spawnPos, spawnRot);
         newNalog.GetComponent<Rigidbody2D>().velocity = -newNalog.transform.up * force;
         newNalog.GetComponent<Nalog>().controller = this.controller;
-        
+
         //newNalog.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, -force), ForceMode2D.Impulse);
         Destroy(newNalog, destroyTime);
         if (stopSpawn)
