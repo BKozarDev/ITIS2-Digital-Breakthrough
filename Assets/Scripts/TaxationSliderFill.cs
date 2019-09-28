@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-public class FillSlider : MonoBehaviour
+public class TaxationSliderFill : MonoBehaviour
 {
     public GameObject buttonPrefab;
 
@@ -19,6 +20,7 @@ public class FillSlider : MonoBehaviour
         {
             GameObject go = Instantiate(buttonPrefab, transform);
             Button goButton = go.GetComponent<Button>();
+            go.GetComponentInChildren<TextMeshProUGUI>().SetText(System.Enum.GetName(typeof(TaxationType), temp.taxationName));
             goButton.onClick.AddListener(() => AddButtonEvent(temp));
         }
 
@@ -27,8 +29,7 @@ public class FillSlider : MonoBehaviour
 
     public void FixWidth(int buttonsLength)
     {
-        GetComponent<RectTransform>().sizeDelta = new Vector2(buttonsLength * GetComponent<GridLayoutGroup>().cellSize.x + (buttonsLength - 1) * (GetComponent<GridLayoutGroup>().spacing.x * 1.2f),
-            GetComponent<RectTransform>().sizeDelta.y);
+        GetComponent<RectTransform>().sizeDelta = new Vector2(GetComponent<RectTransform>().sizeDelta.x, buttonsLength * GetComponent<GridLayoutGroup>().cellSize.y + (buttonsLength - 1) * (GetComponent<GridLayoutGroup>().spacing.y * 1.2f));
     }
 
     public void AddButtonEvent(Taxation tax)
