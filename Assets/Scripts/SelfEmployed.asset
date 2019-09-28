@@ -10,11 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dbfbb2026743d144af7aa02e726b1dd, type: 3}
-  m_Name: Individual
+  m_Name: SelfEmployed
   m_EditorClassIdentifier: 
-  characterType: 0
-  taxations:
-  - {fileID: 11400000, guid: b74ec363b0a474249bc0cd33651c244b, type: 2}
-  - {fileID: 11400000, guid: 4bbe7eafa5e8fb147be4300da5d2a4f7, type: 2}
-  - {fileID: 11400000, guid: 9ac91d757e6ea6544bf5c8136f489639, type: 2}
-  - {fileID: 11400000, guid: 16587d2df71836647bf4edb533505563, type: 2}
+  characterType: 2
+  taxations: []

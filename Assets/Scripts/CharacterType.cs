@@ -5,5 +5,6 @@ using UnityEngine;
 public enum CharacterType
 {
     IndividualEntrepreneur,
-    LegalEntity
+    LegalEntity,
+    SelfEmployed
 }

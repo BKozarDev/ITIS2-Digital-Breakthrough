@@ -14,6 +14,14 @@ public class Controller : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI pointsText;
 
+    void Start()
+    {
+        curCharacter = InfoTransfer.Character;
+        Debug.Log(curCharacter);
+        curTaxation = InfoTransfer.Taxation;
+        Debug.Log(curTaxation);
+    }
+
     public void TapOnNalog(Nalog nalog)
     {
         if (curTaxation.nalogs.Exists(x => x == nalog.type))
