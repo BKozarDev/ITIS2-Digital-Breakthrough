@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class NalogSpawn : MonoBehaviour
 {
@@ -25,6 +26,24 @@ public class NalogSpawn : MonoBehaviour
     private float posBorder = 2.5f;
     [SerializeField]
     private float rotBorder = 45f;
+
+    private Dictionary<NalogType, string> nalogRusName = new Dictionary<NalogType, string>
+    {
+        { NalogType.ENVD, "ЕНВД"},
+        { NalogType.ESHN, "ЕСХН"},
+        { NalogType.InsuranceForEmplyees, "Страховка для работников"},
+        { NalogType.LandTax, "Земельный налог"},
+        { NalogType.MedicalAndPensionInsurance, "Страховка за себя"},
+        { NalogType.NDFL, "НДФЛ"},
+        { NalogType.NDFLForEmployees, "НДФЛ за сотрудников"},
+        { NalogType.NDS, "НДС"},
+        { NalogType.OrganizationProfitTax, "Налог на прибыль организации"},
+        { NalogType.PropertyTax, "Налог на имущество"},
+        { NalogType.ProperyTaxCadastral, "Кадастровый налог на имущество"},
+        { NalogType.PSN, "ПСН"},
+        { NalogType.SimplifiedSystemTax, "Налог по упрощенной системе"},
+        { NalogType.TransportTax, "Транспортный налог"}
+    };
     void Start()
     {
         InvokeRepeating("SpawnNalog", spawnTime, spawnRate);
@@ -44,10 +63,14 @@ public class NalogSpawn : MonoBehaviour
         }
         Vector3 spawnPos = new Vector3(spawnPosX, spawnPosHeight, 0);
         Quaternion spawnRot = Quaternion.Euler(0f, 0f, spawnRotZ);
+        NalogType nalogType = (NalogType)Random.Range(0, System.Enum.GetNames(typeof(NalogType)).Length);
+        string nalogText = nalogRusName[nalogType];
         GameObject newNalog = Instantiate(nalog, spawnPos, spawnRot);
         newNalog.GetComponent<Rigidbody2D>().velocity = -newNalog.transform.up * force;
         newNalog.GetComponent<Nalog>().controller = this.controller;
-        
+        newNalog.GetComponent<Nalog>().type = nalogType;
+        newNalog.GetComponentInChildren<TextMeshPro>().SetText(nalogText);
+
         //newNalog.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, -force), ForceMode2D.Impulse);
         Destroy(newNalog, destroyTime);
         if (stopSpawn)
