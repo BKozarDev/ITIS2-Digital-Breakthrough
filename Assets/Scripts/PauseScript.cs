@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PauseScript : MonoBehaviour
 {
-    bool isPause = false;
-    public void Pause()
+    public void Pause(bool isPause)
     {
-        if (isPause)
+        if (!isPause)
         {
             Time.timeScale = 1f;
             isPause = false;
