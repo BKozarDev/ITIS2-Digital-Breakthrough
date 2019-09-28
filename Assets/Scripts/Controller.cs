@@ -13,11 +13,14 @@ public class Controller : MonoBehaviour
     private int points;
     [SerializeField]
     private TextMeshProUGUI pointsText;
+    [SerializeField]
+    private int defaultPointsAdd = 100;
 
     private Dictionary<FieldOfActivityType, int> upgrades = new Dictionary<FieldOfActivityType, int>();
 
     void Awake()
     {
+
         points = PlayerPrefs.GetInt("Points", 0);
         foreach (FieldOfActivityType field in System.Enum.GetValues(typeof(FieldOfActivityType)))
         {
@@ -39,22 +42,31 @@ public class Controller : MonoBehaviour
     {
         if (curTaxation.nalogs.Exists(x => x == nalog.type))
         {
-            // Add points
-            PointsAdd(10);
+            //PointsAdd(10);
+            // Создание чистой воды
             Debug.Log("Click On Right Nalog");
         }
         else
         {
-            // Minus points
-            PointsAdd(-10);
+            //PointsAdd(-10);
+            // Создание грязной воды
             Debug.Log("Click On Wrong Nalog");
         }
+        nalog.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
+        nalog.GetComponent<Animator>().SetBool("isDead", true);
+        Destroy(nalog.gameObject, 1f);
     }
 
     private void PointsAdd(int points)
     {
         this.points += points;
         UpdateText();
+    }
+
+    public void WaterReset(float cleanliness)
+    {
+        // Добавляем очки, основываясь на чистоте воды и бонусах
+        PointsAdd((int)(defaultPointsAdd * cleanliness));
     }
 
     public void UpgradeField(FieldOfActivityType field, int price)

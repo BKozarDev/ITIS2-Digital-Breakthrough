@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3758648589491271064}
   - component: {fileID: 6398341475853131534}
   - component: {fileID: 2149152920217488850}
+  - component: {fileID: 1411469655}
   m_Layer: 0
   m_Name: Nalog
   m_TagString: Nalog
@@ -97,7 +98,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.7853982
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -136,6 +137,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   controller: {fileID: 0}
+--- !u!95 &1411469655
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435492434382770145}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4469174694267604daaa7a3ec89df9da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7285812432001306224
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +185,7 @@ RectTransform:
   m_GameObject: {fileID: 7285812432001306224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 3435492434382770147}
   m_RootOrder: 0
