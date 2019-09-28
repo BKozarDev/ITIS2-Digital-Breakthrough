@@ -61,7 +61,7 @@ public class NalogSpawn : MonoBehaviour
         {
             spawnRotZ = Random.Range(0, rotBorder);
         }
-        Vector3 spawnPos = new Vector3(spawnPosX, spawnPosHeight, 0);
+        Vector3 spawnPos = new Vector3(spawnPosX, spawnPosHeight, 0f);
         Quaternion spawnRot = Quaternion.Euler(0f, 0f, spawnRotZ);
         NalogType nalogType = (NalogType)Random.Range(0, System.Enum.GetNames(typeof(NalogType)).Length);
         string nalogText = nalogRusName[nalogType];
