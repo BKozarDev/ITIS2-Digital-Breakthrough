@@ -24,6 +24,7 @@ public class CanvasSelect : MonoBehaviour
                 if (canvas.name == "Game Canvas")
                 {
                     menu.SetActive(true);
+                    continueButton.SetActive(true);
                     menuButton.SetActive(false);
                 }
                 else
