@@ -16,10 +16,13 @@ public class Controller : MonoBehaviour
 
     void Start()
     {
-        curCharacter = InfoTransfer.Character;
-        Debug.Log(curCharacter);
-        curTaxation = InfoTransfer.Taxation;
-        Debug.Log(curTaxation);
+        if (InfoTransfer.Character != null && InfoTransfer.Taxation!=null)
+        {
+            curCharacter = InfoTransfer.Character;
+            Debug.Log(curCharacter);
+            curTaxation = InfoTransfer.Taxation;
+            Debug.Log(curTaxation);
+        }
     }
 
     public void TapOnNalog(Nalog nalog)
