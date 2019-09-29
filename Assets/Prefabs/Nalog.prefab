@@ -137,6 +137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   controller: {fileID: 0}
+  rb2d: {fileID: 3758648589491271064}
+  animator: {fileID: 1411469655}
+  speed: 0
 --- !u!95 &1411469655
 Animator:
   serializedVersion: 3

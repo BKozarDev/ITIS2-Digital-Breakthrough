@@ -15,6 +15,8 @@ public class Controller : MonoBehaviour
     private TextMeshProUGUI pointsText;
     [SerializeField]
     private int defaultPointsAdd = 100;
+    [SerializeField]
+    private WaterController waterController;
 
     private Dictionary<FieldOfActivityType, int> upgrades = new Dictionary<FieldOfActivityType, int>();
 
@@ -44,17 +46,17 @@ public class Controller : MonoBehaviour
         {
             //PointsAdd(10);
             // Создание чистой воды
+            waterController.BubbleBursted(nalog.transform.position, (int)(nalog.transform.localScale.x * 10), true);
             Debug.Log("Click On Right Nalog");
         }
         else
         {
             //PointsAdd(-10);
             // Создание грязной воды
+            waterController.BubbleBursted(nalog.transform.position, (int)(nalog.transform.localScale.x * 10), false);
             Debug.Log("Click On Wrong Nalog");
         }
-        nalog.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
-        nalog.GetComponent<Animator>().SetBool("isDead", true);
-        Destroy(nalog.gameObject, 1f);
+
     }
 
     private void PointsAdd(int points)

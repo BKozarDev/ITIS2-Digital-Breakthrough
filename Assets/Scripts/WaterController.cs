@@ -33,18 +33,18 @@ public class WaterController : MonoBehaviour
 
     //private void Update()
     //{
-    //    //if (Input.GetMouseButtonDown(0))
-    //    //{
-    //    //    Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    //    //    pos.z = 0;
-    //    //    BubbleBursted(pos, 5, true);
-    //    //}
-    //    //else if (Input.GetMouseButtonDown(1))
-    //    //{
-    //    //    Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    //    //    pos.z = 0;
-    //    //    BubbleBursted(pos, 5, false);
-    //    //}
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //        pos.z = 0;
+    //        BubbleBursted(pos, 5, true);
+    //    }
+    //    else if (Input.GetMouseButtonDown(1))
+    //    {
+    //        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //        pos.z = 0;
+    //        BubbleBursted(pos, 5, false);
+    //    }
     //}
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -108,7 +108,7 @@ public class WaterController : MonoBehaviour
     {
         float timer = 1f;
         Vector3 startPosition = transform.position;
-        Vector3 targetPosition = startPosition + Vector3.down * waterLevel;
+        Vector3 targetPosition = startPosition + Vector3.down * (waterLevel - 1);
         while (timer >= 0)
         {
             transform.position = Vector3.Lerp(targetPosition, startPosition, timer);
