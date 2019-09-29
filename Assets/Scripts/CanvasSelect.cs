@@ -27,7 +27,7 @@ public class CanvasSelect : MonoBehaviour
             if (canvas == selectedCanvas)
             {
                 canvas.SetActive(true);
-                
+
                 if (canvas.name == "Game Canvas")
                 {
                     menu.SetActive(true);
@@ -62,6 +62,7 @@ public class CanvasSelect : MonoBehaviour
 
     public void GoToMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
