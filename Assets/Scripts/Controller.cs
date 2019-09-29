@@ -6,10 +6,6 @@ using TMPro;
 
 public class Controller : MonoBehaviour
 {
-    //temp
-    public List<Skill> skills;
-    public SkillSliderFill skillSlider;
-
     [SerializeField]
     private Character curCharacter;
     [SerializeField]
@@ -28,12 +24,9 @@ public class Controller : MonoBehaviour
     {
 
         points = PlayerPrefs.GetInt("Points", 0);
-        points = 1000000;
         foreach (FieldOfActivityType field in System.Enum.GetValues(typeof(FieldOfActivityType)))
         {
-            int lvl = PlayerPrefs.GetInt(System.Enum.GetName(typeof(FieldOfActivityType), field), 0);
-            upgrades.Add(field, lvl);
-            skills.FirstOrDefault(x => x.fieldsSkill == field).UpgradeLvl = (short)lvl;
+            upgrades.Add(field, PlayerPrefs.GetInt(System.Enum.GetName(typeof(FieldOfActivityType), field), 0));
         }
 
         if (InfoTransfer.Character != null && InfoTransfer.Taxation != null)
@@ -45,8 +38,6 @@ public class Controller : MonoBehaviour
         }
 
         pointsText.SetText(points.ToString());
-
-        skillSlider.FillSkills(skills);
     }
 
     public void TapOnNalog(Nalog nalog)
@@ -78,9 +69,6 @@ public class Controller : MonoBehaviour
     {
         // Добавляем очки, основываясь на чистоте воды и бонусах
         PointsAdd((int)(defaultPointsAdd * cleanliness));
-
-        //Rigged
-        PointsAdd(1000000);
     }
 
     public void UpgradeField(FieldOfActivityType field, int price)
@@ -88,11 +76,6 @@ public class Controller : MonoBehaviour
         upgrades[field]++;
         points -= price;
         pointsText.SetText(points.ToString());
-        skills.FirstOrDefault(x => x.fieldsSkill == field).UpgradeLvl = (short)upgrades[field];
-        if (upgrades[field] - 1 == 0)
-        {
-            skillSlider.FillSkills(skills);
-        }
     }
 
     public int GetField(FieldOfActivityType field)
