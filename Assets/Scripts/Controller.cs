@@ -6,6 +6,10 @@ using TMPro;
 
 public class Controller : MonoBehaviour
 {
+    //temp
+    public List<Skill> skills;
+    public SkillSliderFill skillSlider;
+
     [SerializeField]
     private Character curCharacter;
     [SerializeField]
@@ -18,16 +22,20 @@ public class Controller : MonoBehaviour
     [SerializeField]
     private WaterController waterController;
 
-    private Dictionary<FieldOfActivityType, int> upgrades = new Dictionary<FieldOfActivityType, int>();
+    private Dictionary<FieldOfActivityType, int> upgrades;
 
     void Awake()
     {
-
         points = PlayerPrefs.GetInt("Points", 0);
+        points = 1000000;
+        upgrades = new Dictionary<FieldOfActivityType, int>();
         foreach (FieldOfActivityType field in System.Enum.GetValues(typeof(FieldOfActivityType)))
         {
-            upgrades.Add(field, PlayerPrefs.GetInt(System.Enum.GetName(typeof(FieldOfActivityType), field), 0));
+            int lvl = PlayerPrefs.GetInt(System.Enum.GetName(typeof(FieldOfActivityType), field), 0);
+            upgrades.Add(field, lvl);
+            skills.FirstOrDefault(x => x.fieldsSkill == field).UpgradeLvl = (short)lvl;
         }
+        Debug.Log(upgrades.Count);
 
         if (InfoTransfer.Character != null && InfoTransfer.Taxation != null)
         {
@@ -38,6 +46,8 @@ public class Controller : MonoBehaviour
         }
 
         pointsText.SetText(points.ToString());
+
+        skillSlider.FillSkills(skills);
     }
 
     public void TapOnNalog(Nalog nalog)
@@ -69,6 +79,9 @@ public class Controller : MonoBehaviour
     {
         // Добавляем очки, основываясь на чистоте воды и бонусах
         PointsAdd((int)(defaultPointsAdd * cleanliness));
+
+        //Rigged
+        PointsAdd(1000000);
     }
 
     public void UpgradeField(FieldOfActivityType field, int price)
@@ -76,6 +89,11 @@ public class Controller : MonoBehaviour
         upgrades[field]++;
         points -= price;
         pointsText.SetText(points.ToString());
+        skills.FirstOrDefault(x => x.fieldsSkill == field).UpgradeLvl = (short)upgrades[field];
+        if (upgrades[field] - 1 == 0)
+        {
+            skillSlider.FillSkills(skills);
+        }
     }
 
     public int GetField(FieldOfActivityType field)
