@@ -25,6 +25,7 @@ public class Nalog : MonoBehaviour
         if (!isClicked)
         {
             controller.TapOnNalog(this);
+            animator.enabled = true;
             animator.SetBool("isDead", true);
             Destroy(this.gameObject, 1f);
             isClicked = true;
