@@ -139,4 +139,9 @@ public class Controller : MonoBehaviour
             PlayerPrefs.SetInt(System.Enum.GetName(typeof(FieldOfActivityType), field), upgrades[field]);
         }
     }
+
+    public void DeleteSave()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
