@@ -11,6 +11,11 @@ public class TaxationSliderFill : MonoBehaviour
 
     public void FillButtons(List<Taxation> list)
     {
+        if (list.Count == 1)
+        {
+            AddButtonEvent(list[0]);
+        }
+
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
