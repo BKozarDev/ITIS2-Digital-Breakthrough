@@ -7877,6 +7877,15 @@ MonoBehaviour:
   posBorder: 2.5
   rotBorder: 45
   scaleBorder: 2
+  nalogSprites:
+  - {fileID: 2383877148571178053, guid: f6a4df3b7eb34ad40a085272dcd951df, type: 3}
+  - {fileID: 3682968360623826485, guid: f6a4df3b7eb34ad40a085272dcd951df, type: 3}
+  - {fileID: 6142392457969742801, guid: f6a4df3b7eb34ad40a085272dcd951df, type: 3}
+  - {fileID: 4657989292412262106, guid: f6a4df3b7eb34ad40a085272dcd951df, type: 3}
+  - {fileID: -1801574627729275461, guid: f6a4df3b7eb34ad40a085272dcd951df, type: 3}
+  - {fileID: 385490391228270722, guid: f6a4df3b7eb34ad40a085272dcd951df, type: 3}
+  - {fileID: -7439130810581013551, guid: f6a4df3b7eb34ad40a085272dcd951df, type: 3}
+  - {fileID: -7212084588642127733, guid: f6a4df3b7eb34ad40a085272dcd951df, type: 3}
 --- !u!4 &1267847018
 Transform:
   m_ObjectHideFlags: 0

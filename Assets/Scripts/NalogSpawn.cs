@@ -29,6 +29,9 @@ public class NalogSpawn : MonoBehaviour
     [SerializeField]
     private float scaleBorder = 2f;
 
+    [SerializeField]
+    private List<Sprite> nalogSprites;
+
     private Dictionary<NalogType, string> nalogRusName = new Dictionary<NalogType, string>
     {
         { NalogType.ENVD, "ЕНВД"},
@@ -64,6 +67,7 @@ public class NalogSpawn : MonoBehaviour
             spawnRotZRnd = Random.Range(0, rotBorder);
         }
         float scaleRnd = Random.Range(0.5f, scaleBorder);
+        int spriteRnd = Random.Range(0, nalogSprites.Count);
         Vector3 spawnPos = new Vector3(spawnPosXRnd, spawnPosHeight, 0f);
         Quaternion spawnRot = Quaternion.Euler(0f, 0f, spawnRotZRnd);
         Vector3 spawnScale = new Vector3(scaleRnd, scaleRnd, 1f);
@@ -76,6 +80,7 @@ public class NalogSpawn : MonoBehaviour
         newNalog.GetComponent<Nalog>().type = nalogType;
         newNalog.GetComponentInChildren<TextMeshPro>().SetText(nalogText);
         newNalog.transform.localScale = spawnScale;
+        newNalog.GetComponent<SpriteRenderer>().sprite = nalogSprites[spriteRnd];
 
         //newNalog.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, -force), ForceMode2D.Impulse);
         Destroy(newNalog, destroyTime);
