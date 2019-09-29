@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaterController : MonoBehaviour
 {
+    public Controller controller;
     public const float MinHeightIncreaseAmount = 0.01f;
 
     public float waterLevel;
@@ -75,6 +76,7 @@ public class WaterController : MonoBehaviour
 
     private void ResetWater()
     {
+        controller.WaterReset(clearness);
         dirtyWaterLevel = 0;
         StartCoroutine(ResetWaterSmooth());
         waterLevel = startWaterLevel;
