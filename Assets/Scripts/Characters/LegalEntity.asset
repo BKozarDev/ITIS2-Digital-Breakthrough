@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbfbb2026743d144af7aa02e726b1dd, type: 3}
   m_Name: LegalEntity
   m_EditorClassIdentifier: 
-  characterType: 0
-  taxations: []
+  characterType: 1
+  taxations:
+  - {fileID: 11400000, guid: c18b7215bf733954686ee1d74fedda5e, type: 2}
+  - {fileID: 11400000, guid: 8fd8df6bab32c2348a2a926193f30ed1, type: 2}
+  - {fileID: 11400000, guid: fa2a80a1203d76243b3ebeca76a59ab1, type: 2}
+  - {fileID: 11400000, guid: b68ab6d4f47c7b84aace196ebb99fe9a, type: 2}

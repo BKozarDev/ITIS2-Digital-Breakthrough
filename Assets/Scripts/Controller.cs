@@ -22,19 +22,20 @@ public class Controller : MonoBehaviour
     [SerializeField]
     private WaterController waterController;
 
-    private Dictionary<FieldOfActivityType, int> upgrades = new Dictionary<FieldOfActivityType, int>();
+    private Dictionary<FieldOfActivityType, int> upgrades;
 
     void Awake()
     {
-
         points = PlayerPrefs.GetInt("Points", 0);
         points = 1000000;
+        upgrades = new Dictionary<FieldOfActivityType, int>();
         foreach (FieldOfActivityType field in System.Enum.GetValues(typeof(FieldOfActivityType)))
         {
             int lvl = PlayerPrefs.GetInt(System.Enum.GetName(typeof(FieldOfActivityType), field), 0);
             upgrades.Add(field, lvl);
             skills.FirstOrDefault(x => x.fieldsSkill == field).UpgradeLvl = (short)lvl;
         }
+        Debug.Log(upgrades.Count);
 
         if (InfoTransfer.Character != null && InfoTransfer.Taxation != null)
         {
