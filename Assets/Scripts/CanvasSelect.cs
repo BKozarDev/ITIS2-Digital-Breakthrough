@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasSelect : MonoBehaviour
 {
@@ -20,10 +21,10 @@ public class CanvasSelect : MonoBehaviour
     public void OpenSelecterCanvas(GameObject selectedCanvas)
     {
         menu.SetActive(false);
-        menuButton.SetActive(true);
+        //menuButton.SetActive(true);
         foreach (var canvas in canvases)
         {
-            if(canvas == selectedCanvas)
+            if (canvas == selectedCanvas)
             {
                 canvas.SetActive(true);
                 
@@ -59,12 +60,17 @@ public class CanvasSelect : MonoBehaviour
         }
     }
 
-    // Костыль, надо сделать движение налога через трансформ в апдейте и просто выключать его
-    private static void TurnOnOffNalog(GameObject nalog, bool on)
+    public void GoToMenu()
     {
-        nalog.GetComponent<SpriteRenderer>().enabled = on;
-        nalog.GetComponent<Collider2D>().enabled = on;
-        nalog.transform.GetChild(0).gameObject.SetActive(on);
-        //nalog.GetComponentInChildren<TextMeshPro>().enabled = on;
+        SceneManager.LoadScene(0);
     }
+
+    //// Костыль, надо сделать движение налога через трансформ в апдейте и просто выключать его
+    //private static void TurnOnOffNalog(GameObject nalog, bool on)
+    //{
+    //    nalog.GetComponent<SpriteRenderer>().enabled = on;
+    //    nalog.GetComponent<Collider2D>().enabled = on;
+    //    nalog.transform.GetChild(0).gameObject.SetActive(on);
+    //    //nalog.GetComponentInChildren<TextMeshPro>().enabled = on;
+    //}
 }
