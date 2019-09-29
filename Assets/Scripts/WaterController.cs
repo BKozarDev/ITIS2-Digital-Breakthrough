@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaterController : MonoBehaviour
 {
-    public const float MinHeightIncreaseAmount = 0.01f;
+    public const float MinHeightIncreaseAmount = 0.02f;
 
     public float waterLevel;
     public float clearness;
@@ -99,7 +99,7 @@ public class WaterController : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            transform.position += Vector3.up * 0.0025f;
+            transform.position += Vector3.up * 0.005f;
             yield return null;
         }
     }
