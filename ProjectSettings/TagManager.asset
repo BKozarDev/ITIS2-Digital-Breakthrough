@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Water
-  - WaterBall
+  - Nalog
   layers:
   - Default
   - TransparentFX
