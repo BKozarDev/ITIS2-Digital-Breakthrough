@@ -63,22 +63,31 @@ public class ChooseButton : MonoBehaviour
             {
                 anim = false;
                 timer = 0;
-                if (!animIn)
-                    slider.SetActive(true);
             }
         }
     }
 
     public void MoveIn()
     {
-        anim = true;
-        animIn = true;
+        if (!animIn)
+        {
+            anim = true;
+            animIn = true;
+        }
     }
 
     public void MoveOut()
     {
-        anim = true;
-        animIn = false;
+        if (animIn)
+        {
+            anim = true;
+            animIn = false;
+        }
+    }
+
+    public void SetSlider(bool slider)
+    {
+        this.slider.SetActive(slider);
     }
 
     public void ChooseChar(Character character)
