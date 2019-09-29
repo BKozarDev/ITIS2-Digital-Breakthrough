@@ -24,8 +24,20 @@ public class Controller : MonoBehaviour
 
     private Dictionary<FieldOfActivityType, int> upgrades;
 
+    public static Controller Instance;
+
+    public Taxation GetCurTaxation()
+    {
+        return curTaxation;
+    }
+
     void Awake()
     {
+        if (Controller.Instance == null)
+        {
+            Controller.Instance = this;
+        }
+
         points = PlayerPrefs.GetInt("Points", 0);
         points = 1000000;
         upgrades = new Dictionary<FieldOfActivityType, int>();
@@ -77,11 +89,12 @@ public class Controller : MonoBehaviour
 
     public void WaterReset(float cleanliness)
     {
-        // Добавляем очки, основываясь на чистоте воды и бонусах
+        // Добавляем очки, основываясь на чистоте воды
         PointsAdd((int)(defaultPointsAdd * cleanliness));
 
         //Rigged
-        PointsAdd(1000000);
+        //PointsAdd(1000000);
+        Save();
     }
 
     public void UpgradeField(FieldOfActivityType field, int price)
@@ -94,6 +107,7 @@ public class Controller : MonoBehaviour
         {
             skillSlider.FillSkills(skills);
         }
+        Save();
     }
 
     public int GetField(FieldOfActivityType field)
